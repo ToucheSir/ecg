@@ -10,7 +10,10 @@ import random
 import scipy.io as sio
 import tqdm
 
-STEP = 256
+import tensorflow as tf
+
+# STEP = 256
+STEP = 512
 
 def data_generator(batch_size, preproc, x, y):
     num_examples = len(x)

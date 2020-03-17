@@ -5,7 +5,8 @@ import random
 import scipy.io as sio
 import tqdm
 
-STEP = 256
+# STEP = 256
+STEP = 512
 
 def load_ecg_mat(ecg_file):
     return sio.loadmat(ecg_file)['val'].squeeze()
