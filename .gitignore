@@ -96,3 +96,9 @@ ENV/
 
 # Vim
 *.swp
+
+# PyCharm
+.idea
+
+# VS Code
+.vscode
