@@ -23,8 +23,7 @@ def data_generator(
     ds = tf.data.Dataset.from_generator(
         lambda: zip(ecgs, labels), (tf.float32, tf.dtypes.string), INPUT_SHAPE
     )
-    ds = ds.shuffle(len(ecgs)).repeat()
-    ds = ds.padded_batch(
+    ds = ds.repeat().padded_batch(
         batch_size,
         INPUT_SHAPE,
         padding_values=(default_signal, default_label),

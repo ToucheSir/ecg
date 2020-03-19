@@ -1,12 +1,9 @@
-from __future__ import print_function
-
 import argparse
-import numpy as np
-import keras
 import os
 
-import load
-import util
+from tensorflow.keras.models import load_model
+
+from . import util, load
 
 
 def predict(data_json, model_path):
@@ -14,7 +11,7 @@ def predict(data_json, model_path):
     dataset = load.load_dataset(data_json)
     x, y = preproc.process(*dataset)
 
-    model = keras.models.load_model(model_path)
+    model = load_model(model_path)
     probs = model.predict(x, verbose=1)
 
     return probs
@@ -26,3 +23,4 @@ if __name__ == "__main__":
     parser.add_argument("model_path", help="path to model")
     args = parser.parse_args()
     probs = predict(args.data_json, args.model_path)
+    print(probs)
