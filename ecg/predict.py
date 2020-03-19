@@ -8,6 +8,7 @@ import os
 import load
 import util
 
+
 def predict(data_json, model_path):
     preproc = util.load(os.path.dirname(model_path))
     dataset = load.load_dataset(data_json)
@@ -18,7 +19,8 @@ def predict(data_json, model_path):
 
     return probs
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("data_json", help="path to data json")
     parser.add_argument("model_path", help="path to model")

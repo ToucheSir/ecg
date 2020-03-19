@@ -33,7 +33,7 @@ env TF=gpu ./setup.sh
 
 ## Training
 
-In the repo root direcotry (`ecg`) make a new directory called `saved`.
+In the repo root directory (`ecg`) make a new directory called `saved`.
 
 ```
 mkdir saved
@@ -43,7 +43,7 @@ To train a model use the following command, replacing `path_to_config.json`
 with an actual config:
 
 ```
-python ecg/train.py path_to_config.json
+python -m ecg.train path_to_config.json
 ```
 
 Note that after each epoch the model is saved in
@@ -59,7 +59,7 @@ evaluating a model.
 After training the model for a few epochs, you can make predictions with.
 
 ```
-python ecg/predict.py <dataset>.json <model>.hdf5
+python -m ecg.predict <dataset>.json <model>.hdf5
 ```
 
 replacing `<dataset>` with an actual path to the dataset and `<model>` with the
