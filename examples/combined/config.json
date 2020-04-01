@@ -13,9 +13,9 @@
     "learning_rate": 0.001,
     "batch_size": 64,
 
-    "train": "examples/cinc17/train.json",
-    "dev": "examples/cinc17/dev.json",
-    "test": "examples/cinc17/test.json",
+    "train": "examples/combined/train.json",
+    "dev": "examples/combined/dev.json",
+    "test": "examples/combined/test.json",
 
     "generator": true,
 

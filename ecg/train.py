@@ -62,7 +62,7 @@ def train(args: Any, params: dict):
 
     callbacks = [
         TensorBoard(Path("logs/fit") / save_dir.name, histogram_freq=1),
-        ModelCheckpoint(get_filename_for_saving(save_dir), save_best_only=False),
+        ModelCheckpoint(get_filename_for_saving(save_dir), save_best_only=True),
         ReduceLROnPlateau(
             factor=0.1, patience=2, min_lr=params["learning_rate"] * 0.001
         ),

@@ -3,6 +3,7 @@ import random
 import os
 
 import tqdm
+import numpy as np
 import scipy.io as sio
 from sklearn.model_selection import train_test_split
 
@@ -11,9 +12,8 @@ def load_ecg_mat(ecg_file):
     return sio.loadmat(ecg_file)["val"].squeeze()
 
 
-def load_all(path, step):
-    label_file = os.path.join(path, "../REFERENCE-v3.csv")
-    with open(label_file, "r") as fid:
+def load_all(path, label_file, step):
+    with open(os.path.join(path, label_file), "r") as fid:
         records = [l.strip().split(",") for l in fid]
 
     dataset = []
@@ -33,17 +33,23 @@ def make_json(save_path, dataset):
             fid.write("\n")
 
 
-STEP = 256
+STEP = 512
 
 if __name__ == "__main__":
     random.seed(2018)
+    np.random.seed(2020)
 
     with open("config.json") as f:
         config = json.load(f)
 
-    dev_frac = 0.1
-    data_path = "data/training2017"
-    data = load_all(data_path, config.get("step", STEP))
+    data = load_all("data/training2017", "../REFERENCE-v3.csv", config.get("step", STEP))
     train, dev = train_test_split(data, test_size=0.1)
     make_json("train.json", train)
     make_json("dev.json", dev)
+
+    test = load_all(
+        "data/sample2017/validation/",
+        "../answers.txt",
+        config.get("step", STEP),
+    )
+    make_json("test.json", test)
